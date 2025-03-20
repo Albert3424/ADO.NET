@@ -12,6 +12,7 @@ namespace ADO.NET
 	{
 		static void Main(string[] args)
 		{
+#if INTRO
 			const int PADDING = 30;
 			const string CONNECTION_STRING = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Movies;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 			Console.WriteLine(CONNECTION_STRING);
@@ -44,7 +45,13 @@ namespace ADO.NET
 
 			reader.Close();
 			connection.Close();
+#endif
 
+			//Connector.Select("*", "Directors");
+			//Connector.Select("title,release_date,FORMATMESSAGE(N'%s %s', first_name, last_name)", "Movies, Directors", "director = director_id");
+			Connector.InsertDirector("George", "Martin");
+			Connector.SelectDirectors();
+			Connector.SelectMovies();
 			Console.ReadLine();
 		}
 	}
