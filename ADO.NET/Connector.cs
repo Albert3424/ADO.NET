@@ -67,7 +67,15 @@ namespace ADO.NET
 			string cmd = $"INSERT Directors(first_name, last_name) VALUES ({first_name}, {last_name})";
 			SqlCommand command = new SqlCommand(cmd, connection);
 			connection.Open();
-			command.ExecuteNonQuery();
+			//command.ExecuteNonQuery();
+			connection.Close();
+		}
+		public static void InsertMovie(string title, DateTime release_date, int director)
+		{
+			string cmd = $"INSERT Movies(title, release_date, director) VALUES ({title}, {release_date.ToString("dd-mm--yyyy")}, {director})";
+			SqlCommand command = new SqlCommand(cmd, connection);
+			connection.Open();
+			//command.ExecuteNonQuery();
 			connection.Close();
 		}
 	}
