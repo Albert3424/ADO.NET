@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace ADO.NET
 {
@@ -12,9 +13,10 @@ namespace ADO.NET
 	{
 		static void Main(string[] args)
 		{
-#if INTRO
+			//#if INTRO
 			const int PADDING = 30;
-			const string CONNECTION_STRING = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Movies;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+			//const string CONNECTION_STRING = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Movies;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+			string CONNECTION_STRING = ConfigurationManager.ConnectionStrings["Movies_PV_319"].ConnectionString;
 			Console.WriteLine(CONNECTION_STRING);
 
 			SqlConnection connection = new SqlConnection(CONNECTION_STRING);
@@ -45,12 +47,12 @@ namespace ADO.NET
 
 			reader.Close();
 			connection.Close();
-#endif
+//#endif
 
 			//Connector.Select("*", "Directors");
 			//Connector.Select("title,release_date,FORMATMESSAGE(N'%s %s', first_name, last_name)", "Movies, Directors", "director = director_id");
-			Connector.InsertDirector("George", "Martin");
-			Connector.InsertMovie("Game of Thrones", new DateTime(2011, 04, 17), 7);
+			//Connector.InsertDirector("Martin", "Scorsese"); //Brian, De Palma
+			Connector.InsertMovie("Terminator 5 - Genesis", "22-06-2015", 1);
 			Connector.SelectDirectors();
 			Connector.SelectMovies();
 			Console.ReadLine();

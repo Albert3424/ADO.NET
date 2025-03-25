@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.34601.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.NET", "ADO.NET\ADO.NET.csproj", "{6D516C19-4889-4771-9C0D-CF60987B1552}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalBase", "ExternalBase\ExternalBase.csproj", "{0105B5F3-9CDA-4439-A402-1FD6C6F2CCE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academy", "Academy\Academy.csproj", "{8B1928F1-6DC2-458B-8494-E4D63029E149}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{6D516C19-4889-4771-9C0D-CF60987B1552}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D516C19-4889-4771-9C0D-CF60987B1552}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D516C19-4889-4771-9C0D-CF60987B1552}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0105B5F3-9CDA-4439-A402-1FD6C6F2CCE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0105B5F3-9CDA-4439-A402-1FD6C6F2CCE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0105B5F3-9CDA-4439-A402-1FD6C6F2CCE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0105B5F3-9CDA-4439-A402-1FD6C6F2CCE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B1928F1-6DC2-458B-8494-E4D63029E149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B1928F1-6DC2-458B-8494-E4D63029E149}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B1928F1-6DC2-458B-8494-E4D63029E149}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B1928F1-6DC2-458B-8494-E4D63029E149}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
