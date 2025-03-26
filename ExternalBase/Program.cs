@@ -11,9 +11,9 @@ namespace ExternalBase
 		static void Main(string[] args)
 		{
 			//Connector.Select("*", "Disciplines");
-			int disciplineId = Connector.GetDisciplineId("discipline_id", "Disciplines", "JavaScript");
-
-			Console.WriteLine($"Полученный идентификатор дисциплины: {disciplineId}");
+			Console.WriteLine(Connector.GetDisciplineID("Объектно-ориентированное программирование на языке C++"));
+			Console.WriteLine(Connector.GetTeacherID("Глазунов"));
+			Console.WriteLine(Connector.Count("Students"));
 
 			Console.ReadLine();
 		}

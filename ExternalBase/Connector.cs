@@ -9,7 +9,7 @@ using System.Configuration;
 
 namespace ExternalBase
 {
-	static class Connector
+	static internal class Connector
 	{
 		static readonly int PADDING = 16;
 		static readonly string CONNECTION_STRING = ConfigurationManager.ConnectionStrings["PV_319_Import"].ConnectionString;
@@ -47,17 +47,38 @@ namespace ExternalBase
 			connection.Close();
 			Console.ReadLine();
 		}
-		public static int GetDisciplineId(string fields, string tables, string condition)
+		public static int GetID(string fields, string table, string condition)
 		{
-			string cmd = $"SELECT {fields} FROM {tables} WHERE {condition}";
-
-			SqlConnection connection = new SqlConnection(CONNECTION_STRING);
+			string cmd = $"SELECT {fields} FROM {table} WHERE {condition}";
 			SqlCommand command = new SqlCommand(cmd, connection);
 			connection.Open();
 
+			object result = command.ExecuteScalar();
 			connection.Close();
 
-			return Convert.ToInt16(command.ExecuteScalar());
+			return Convert.ToInt32(result);
+		}
+		public static int GetDisciplineID(string disciplineName)
+		{
+			return GetID("discipline_id", "Disciplines", $"discipline_name=N'{disciplineName}'");
+		}
+
+		public static int GetTeacherID(string lastName)
+		{
+			return GetID("teacher_id", "Teachers", $"last_name=N'{lastName}'");
+		}
+
+		public static int Count(string table)
+		{
+			int count = 0;
+			string cmd = $"SELECT COUNT(*) FROM {table}";
+			SqlCommand command = new SqlCommand(cmd, connection);
+			connection.Open();
+
+			count = Convert.ToInt32(command.ExecuteScalar());
+			connection.Close();
+
+			return count;
 		}
 	}
 }
