@@ -18,6 +18,7 @@ namespace Academy
 		SqlConnection connection;
 		public Connector(string connection_string)
 		{
+			//CONNECTION_STRING = ConfigurationManager.ConnectionStrings["PV_319_Import"].ConnectionString;
 			CONNECTION_STRING = connection_string;
 			connection = new SqlConnection(CONNECTION_STRING);
 			AllocConsole();
@@ -62,11 +63,13 @@ namespace Academy
 				table = new DataTable();
 				table.Load(reader);
 #if OLD
+				//2) Добавляем в нее поля:
 				for (int i = 0; i < reader.FieldCount; i++)
 				{
 					table.Columns.Add();
 				}
 
+				//3) Заполняем таблицу:
 				while (reader.Read())
 				{
 					DataRow row = table.NewRow();

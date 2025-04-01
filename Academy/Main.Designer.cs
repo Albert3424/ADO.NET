@@ -43,6 +43,7 @@ namespace Academy
 			this.dgvDisciplines = new System.Windows.Forms.DataGridView();
 			this.tabPageTeachers = new System.Windows.Forms.TabPage();
 			this.dgvTeachers = new System.Windows.Forms.DataGridView();
+			this.ShowEmptyDirections = new System.Windows.Forms.CheckBox();
 			this.statusStrip.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.tabPageStudents.SuspendLayout();
@@ -145,6 +146,7 @@ namespace Academy
 			// 
 			// tabPageDirections
 			// 
+			this.tabPageDirections.Controls.Add(this.ShowEmptyDirections);
 			this.tabPageDirections.Controls.Add(this.dgvDirections);
 			this.tabPageDirections.Location = new System.Drawing.Point(4, 22);
 			this.tabPageDirections.Name = "tabPageDirections";
@@ -209,6 +211,19 @@ namespace Academy
 			this.dgvTeachers.Size = new System.Drawing.Size(818, 365);
 			this.dgvTeachers.TabIndex = 2;
 			// 
+			// ShowEmptyDirections
+			// 
+			this.ShowEmptyDirections.AutoSize = true;
+			this.ShowEmptyDirections.Checked = true;
+			this.ShowEmptyDirections.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.ShowEmptyDirections.Location = new System.Drawing.Point(606, 6);
+			this.ShowEmptyDirections.Name = "ShowEmptyDirections";
+			this.ShowEmptyDirections.Size = new System.Drawing.Size(183, 17);
+			this.ShowEmptyDirections.TabIndex = 3;
+			this.ShowEmptyDirections.Text = "Показать пустые направления";
+			this.ShowEmptyDirections.UseVisualStyleBackColor = true;
+			this.ShowEmptyDirections.CheckedChanged += new System.EventHandler(this.ShowEmptyDirections_CheckedChanged);
+			// 
 			// Main
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,6 +243,7 @@ namespace Academy
 			this.tabPageGroups.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgvGroups)).EndInit();
 			this.tabPageDirections.ResumeLayout(false);
+			this.tabPageDirections.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvDirections)).EndInit();
 			this.tabPageDisciplines.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgvDisciplines)).EndInit();
@@ -254,6 +270,7 @@ namespace Academy
 		private System.Windows.Forms.DataGridView dgvTeachers;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelCount;
 		private System.Windows.Forms.ComboBox cbGroupsDirection;
+		private System.Windows.Forms.CheckBox ShowEmptyDirections;
 	}
 }
 
