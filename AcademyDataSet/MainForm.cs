@@ -21,6 +21,8 @@ namespace AcademyDataSet
 		SqlConnection connection;
 		DataSet GroupsRelatedData;
 		List<string> tables;
+		List<string> commands;
+
 		public MainForm()
 		{
 			InitializeComponent();
@@ -33,6 +35,14 @@ namespace AcademyDataSet
 			GroupsRelatedData = new DataSet(nameof(GroupsRelatedData));
 			//LoadGroupsRelatedData();
 			Check();
+		
+			cbDirections.DataSource = GroupsRelatedData.Tables["Directions"];
+			cbDirections.DisplayMember = "direction_name";
+			cbDirections.ValueMember = "direction_id";
+
+			cbGroups.DataSource = GroupsRelatedData.Tables["Groups"];
+			cbGroups.DisplayMember = "group_name";
+			cbGroups.ValueMember = "group_id";
 		}
 		public void AddTable(string table, string columns)
 		{
@@ -58,6 +68,15 @@ namespace AcademyDataSet
 			string[] tables = this.tables.ToArray();
 			for (int i = 0; i < tables.Length; i++)
 			{
+				string columns = "";
+				DataColumnCollection column_collection = GroupsRelatedData.Tables[tables[i].Split(',')[0]].Columns;
+				foreach (DataColumn column in column_collection)
+				{
+					columns += $"[{column.ColumnName}],";
+				}
+				columns = columns.Remove(columns.LastIndexOf(','));
+				Console.WriteLine(columns);
+				string cmd = $"SELECT {columns} FROM {tables[i].Split(',')[0]}";
 				SqlDataAdapter adapter = new SqlDataAdapter(cmd, connection);
 				adapter.Fill(GroupsRelatedData.Tables[tables[i].Split(',')[0]]);
 			}
@@ -91,7 +110,7 @@ namespace AcademyDataSet
 				(
 				dsRelation_GroupsDirections,  
 				GroupsRelatedData.Tables["Directions"].Columns["direction_id"], 
-				GroupsRelatedData.Tables["Groups"].Columns["direction"]       
+				GroupsRelatedData.Tables["Groups"].Columns["direction"]        
 				);
 
 			string directions_cmd = "SELECT * FROM Directions";
@@ -191,5 +210,10 @@ $"{row[dst_Groups_col_group_id]}\t{row[dst_Groups_col_group_name]}\t{row.GetPare
 		public static extern bool AllocConsole();
 		[DllImport("kernel32.dll")]
 		public static extern bool FreeConsole();
+
+		private void cbDirections_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			GroupsRelatedData.Tables["Groups"].DefaultView.RowFilter = $"direction={cbDirections.SelectedValue}";
+		}
 	}
 }
