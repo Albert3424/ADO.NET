@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Runtime.InteropServices;
 
 namespace AcademyDataSet
 {
@@ -80,7 +81,6 @@ namespace AcademyDataSet
 				Set.Tables["Groups"].Columns["direction"]   
 				);
 
-			//4) Загружаем данные в таблицы:
 			string directions_cmd = "SELECT * FROM Directions";
 			string groups_cmd = "SELECT * FROM Groups";
 			SqlDataAdapter directionsAdapter = new SqlDataAdapter(directions_cmd, connection);
@@ -185,6 +185,13 @@ $"{row[dst_Groups_col_group_id]}\t{row[dst_Groups_col_group_name]}\t{row.GetPare
 			Print("Directions");
 			Print("Groups");
 			Print("Students");
+		}
+		public void ClearCache()
+		{
+			tables.Clear();
+			tables = new List<string>();
+			Set.Clear();
+			Set = new DataSet(nameof(Set));
 		}
 	}
 }

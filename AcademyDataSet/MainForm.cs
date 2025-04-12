@@ -45,6 +45,24 @@ namespace AcademyDataSet
 		{
 			GroupsRelatedData.Set.Tables["Groups"].DefaultView.RowFilter = $"direction={cbDirections.SelectedValue}";
 		}
+		public void RefreshCache()
+		{
+			GroupsRelatedData.AddTable("Directions", "direction_id,direction_name");
+			GroupsRelatedData.AddTable("Groups", "group_id,group_name,direction");
+			GroupsRelatedData.AddTable("Students", "stud_id,last_name,first_name,middle_name,birth_date,group");
+			GroupsRelatedData.AddRelation("GroupsDirections", "Groups,direction", "Directions,direction_id");
+			GroupsRelatedData.AddRelation("StudentsGroups", "Students,group", "Groups,group_id");
+			GroupsRelatedData.Load();
+			GroupsRelatedData.Print("Directions");
+			GroupsRelatedData.Print("Groups");
+			GroupsRelatedData.Print("Students");
+		}
+		private void btnRefresh_Click(object sender, EventArgs e)
+		{
+			GroupsRelatedData.ClearCache();
+			RefreshCache();
+		}
+		
 		[DllImport("kernel32.dll")]
 		public static extern bool AllocConsole();
 		[DllImport("kernel32.dll")]
